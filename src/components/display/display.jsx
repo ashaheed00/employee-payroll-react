@@ -16,6 +16,18 @@ const Display = (props) => {
     props.history.push(`payroll-form/${employeeId}`);
   };
 
+  const remove = (employeeId) => {
+    employeeService
+      .deleteEmployee(employeeId)
+      .then((data) => {
+        console.log("data after delete", data);
+        props.getAllEmployee();
+      })
+      .catch((err) => {
+        console.log("error after delete", err);
+      });
+  };
+
   return (
     <table id="display" className="display">
       <tbody>
@@ -60,7 +72,11 @@ const Display = (props) => {
               <td> ₹ {element.salary}</td>
               <td>{element.startDate}</td>
               <td>
-                <img src={deleteIcon} alt="delete" />
+                <img
+                  onClick={() => remove(element.id)}
+                  src={deleteIcon}
+                  alt="delete"
+                />
                 <img
                   onClick={() => update(element.id)}
                   src={editIcon}
