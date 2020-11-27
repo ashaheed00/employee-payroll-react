@@ -7,7 +7,7 @@ class AxiosService {
       .then((response) => {
         console.log("Employee Added: \n" + response);
       })
-      .then((error) => console.error(error));
+      .catch((error) => console.error(error));
   }
 
   putService(url, payload = null, tokenRequired = false, httpOptions = null) {
