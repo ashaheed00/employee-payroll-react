@@ -83,24 +83,24 @@ const PayrollForm = (props) => {
       startDate: "",
     };
     if (formValue.name.length < 1) {
-      error.name = "name is required field";
+      error.name = "Name is a required field";
       isError = true;
     }
     if (formValue.gender.length < 1) {
-      error.gender = "gender is required field";
+      error.gender = "Gender is a required field";
       isError = true;
     }
     if (formValue.salary.length < 1) {
-      error.salary = "salary is required field";
+      error.salary = "Salary is a required field";
       isError = true;
     }
     if (formValue.profileUrl.length < 1) {
-      error.profileUrl = "profile is required field";
+      error.profileUrl = "Profile Image is a required field";
       isError = true;
     }
 
     if (formValue.departMentValue.length < 1) {
-      error.department = "department is required field";
+      error.department = "Department is a required field";
       isError = true;
     }
     await setForm({ ...formValue, error: error });
@@ -108,6 +108,10 @@ const PayrollForm = (props) => {
   };
   const save = async (event) => {
     event.preventDefault();
+    if (await validData()) {
+      console.log("error", formValue);
+      return;
+    }
     let object = {
       name: formValue.name,
       departMent: formValue.departMentValue,
@@ -121,11 +125,11 @@ const PayrollForm = (props) => {
     employeeService
       .addEmployee(object)
       .then((data) => {
-        console.log("data added");
+        console.log("Employee payroll added");
         props.history.push("");
       })
       .catch((err) => {
-        console.log("err while Add");
+        console.log("error occured while adding employee");
       });
   };
   /**
@@ -165,7 +169,8 @@ const PayrollForm = (props) => {
               name="name"
               value={formValue.name}
               onChange={changeValue}
-              placeholder="Your name.."
+              placeholder="Enter Your name.."
+              required="true"
             />
           </div>
           <div className="error"> {formValue.error.name} </div>
@@ -296,6 +301,7 @@ const PayrollForm = (props) => {
               value={formValue.salary}
               name="salary"
               placeholder="Salary"
+              required="true"
             />
           </div>
           <div className="error"> {formValue.error.salary} </div>
