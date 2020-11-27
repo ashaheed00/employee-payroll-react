@@ -6,15 +6,16 @@ import profile4 from "../../assets/profile-images/Ellipse-7.png";
 import "./payroll-form.scss";
 import logo from "../../assets/images/logo.png";
 import { useParams, Link, withRouter } from "react-router-dom";
+import EmployeeService from "../../services/employee-service";
 
 const PayrollForm = (props) => {
   let initialValue = {
     name: "",
     profileArray: [
-      { url: "../../../assets/profile-images/Ellipse -3.png" },
-      { url: "../../../assets/profile-images/Ellipse 1.png" },
-      { url: "../../../assets/profile-images/Ellipse -8.png" },
-      { url: "../../../assets/profile-images/Ellipse -7.png" },
+      { url: "../../../assets/profile-images/Ellipse-3.png" },
+      { url: "../../../assets/profile-images/Ellipse-1.png" },
+      { url: "../../../assets/profile-images/Ellipse-8.png" },
+      { url: "../../../assets/profile-images/Ellipse-7.png" },
     ],
     allDepartment: ["HR", "Sales", "Finance", "Engineer", "Others"],
     departMentValue: [],
@@ -37,11 +38,22 @@ const PayrollForm = (props) => {
       startDate: "",
     },
   };
-
   const [formValue, setForm] = useState(initialValue);
   const params = useParams();
   const employeeService = new EmployeeService();
 
+  const setData = (obj) => {
+    let array = obj.startDate.split(" ");
+    setForm({
+      ...formValue,
+      ...obj,
+      departMentValue: obj.departMent,
+      isUpdate: true,
+      day: array[0],
+      month: array[1],
+      year: array[2],
+    });
+  };
   const changeValue = (event) => {
     setForm({ ...formValue, [event.target.name]: event.target.value });
   };
@@ -94,7 +106,6 @@ const PayrollForm = (props) => {
     await setForm({ ...formValue, error: error });
     return isError;
   };
-
   const save = async (event) => {
     event.preventDefault();
     let object = {
@@ -117,7 +128,6 @@ const PayrollForm = (props) => {
         console.log("err while Add");
       });
   };
-
   /**
    * description:- to reset the form value
    */
@@ -169,10 +179,10 @@ const PayrollForm = (props) => {
                   type="radio"
                   checked={
                     formValue.profileUrl ===
-                    "../../assets/profile-images/Ellipse -3.png"
+                    "../../assets/profile-images/Ellipse-3.png"
                   }
                   name="profileUrl"
-                  value="../../assets/profile-images/Ellipse -3.png"
+                  value="../../assets/profile-images/Ellipse-3.png"
                   onChange={changeValue}
                 />
                 <img className="profile" src={profile1} alt="profile" />
@@ -183,9 +193,9 @@ const PayrollForm = (props) => {
                   name="profileUrl"
                   checked={
                     formValue.profileUrl ===
-                    "../../assets/profile-images/Ellipse 1.png"
+                    "../../assets/profile-images/Ellipse-1.png"
                   }
-                  value="../../assets/profile-images/Ellipse 1.png"
+                  value="../../assets/profile-images/Ellipse-1.png"
                   onChange={changeValue}
                 />
                 <img className="profile" src={profile2} alt="profile" />
@@ -196,9 +206,9 @@ const PayrollForm = (props) => {
                   name="profileUrl"
                   checked={
                     formValue.profileUrl ===
-                    "../../assets/profile-images/Ellipse -8.png"
+                    "../../assets/profile-images/Ellipse-8.png"
                   }
-                  value="../../assets/profile-images/Ellipse -8.png"
+                  value="../../assets/profile-images/Ellipse-8.png"
                   onChange={changeValue}
                 />
                 <img className="profile" src={profile3} alt="profile" />
@@ -209,9 +219,9 @@ const PayrollForm = (props) => {
                   name="profileUrl"
                   checked={
                     formValue.profileUrl ===
-                    "../../assets/profile-images/Ellipse -7.png"
+                    "../../assets/profile-images/Ellipse-7.png"
                   }
-                  value="../../assets/profile-images/Ellipse -7.png"
+                  value="../../assets/profile-images/Ellipse-7.png"
                   onChange={changeValue}
                 />
                 <img className="profile" src={profile4} alt="profile" />
