@@ -133,6 +133,31 @@
       "notes": "kerash",
       "id": 1604589594375,
       "profileUrl": "../../assets/profile-images/Ellipse-7.png"
+    },
+    {
+      "name": "Gautham Menon",
+      "departMent": [
+        "HR",
+        "Others"
+      ],
+      "gender": "male",
+      "salary": "100000000",
+      "startDate": "1 Jan 2016",
+      "notes": "",
+      "id": 1604589594376,
+      "profileUrl": "../../assets/profile-images/Ellipse-8.png"
+    },
+    {
+      "name": "kjnx",
+      "departMent": [
+        "Sales"
+      ],
+      "gender": "female",
+      "salary": "26",
+      "startDate": "1 Jan 2020",
+      "notes": "",
+      "id": 1604589594377,
+      "profileUrl": "../../assets/profile-images/Ellipse-1.png"
     }
   ]
 }

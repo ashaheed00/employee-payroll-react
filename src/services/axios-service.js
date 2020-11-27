@@ -23,9 +23,4 @@ class AxiosService {
   }
 }
 
-module.exports = {
-  postService: new AxiosService().postService,
-  putService: new AxiosService().putService,
-  deleteService: new AxiosService().deleteService,
-  getService: new AxiosService().getService,
-};
+module.exports = new AxiosService();
