@@ -18,6 +18,9 @@ function App() {
           <Route exact path="/payroll-form">
             <PayrollForm />
           </Route>
+          <Route exact path="/payroll-form/:id">
+            <PayrollForm />
+          </Route>
           <Route exact path="">
             <Redirect exact from="/" to="/home" />
           </Route>

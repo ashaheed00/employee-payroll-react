@@ -25,17 +25,18 @@
       "profileUrl": "../../assets/profile-images/Ellipse -8.png"
     },
     {
-      "name": "devagya chouksey",
+      "name": "Deva Chaubey",
       "departMent": [
         "HR",
-        "Sales"
+        "Sales",
+        "Finance"
       ],
       "gender": "male",
-      "salary": "40000",
+      "salary": "400000",
       "startDate": "20 March 2019",
       "notes": "",
       "id": 1604589594367,
-      "profileUrl": "../../assets/profile-images/Ellipse -3.png"
+      "profileUrl": "../../assets/profile-images/Ellipse-8.png"
     },
     {
       "name": "Mohit Mohit",
