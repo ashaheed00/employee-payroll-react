@@ -120,6 +120,19 @@
       "notes": "",
       "id": 1604589594374,
       "profileUrl": "../../assets/profile-images/Ellipse-3.png"
+    },
+    {
+      "name": "Aditi Roy",
+      "departMent": [
+        "HR",
+        "Sales"
+      ],
+      "gender": "female",
+      "salary": "10000",
+      "startDate": "1 Jan 2020",
+      "notes": "kerash",
+      "id": 1604589594375,
+      "profileUrl": "../../assets/profile-images/Ellipse-7.png"
     }
   ]
 }
