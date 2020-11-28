@@ -24,6 +24,10 @@ export default class Home extends React.Component {
   }
 
   getAllEmployee = () => {
+    // this.employeeService.getAllEmployee().then((emp) => {
+    //   console.log(emp.message);
+    //   return emp.data;
+    // });
     this.employeeService
       .getAllEmployee()
       .then((data) => {

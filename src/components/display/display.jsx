@@ -32,7 +32,7 @@ const Display = (props) => {
     <table id="display" className="display">
       <tbody>
         <tr key={-1}>
-          <th></th>
+          <th>Profile Image</th>
           <th>Name</th>
           <th>Gender</th>
           <th>Department</th>
@@ -62,7 +62,7 @@ const Display = (props) => {
                 />
               </td>
               <td>{element.name}</td>
-              <td>{element.gender}</td>
+              <td className="gender">{element.gender}</td>
               <td>
                 {element.departMent &&
                   element.departMent.map((dept) => (

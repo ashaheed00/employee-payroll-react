@@ -294,6 +294,17 @@ const PayrollForm = (props) => {
               <label className="text" htmlFor="female">
                 Female
               </label>
+              <input
+                type="radio"
+                id="others"
+                checked={formValue.gender === "others"}
+                onChange={changeValue}
+                name="gender"
+                value="others"
+              />
+              <label className="text" htmlFor="others">
+                Others
+              </label>
             </div>
           </div>
           <div className="error"> {formValue.error.gender} </div>

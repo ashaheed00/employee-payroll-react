@@ -7,7 +7,7 @@
     min-width: 100%;
     td,
     th {
-      /* border: 1px solid #dddddd; */
+      border: 1px solid #dddddd;
       text-align: left;
       padding: 5px 8px;
     }
@@ -38,8 +38,12 @@
     }
     .profile {
       width: 40px;
-      border-radius: 50%;
-      margin: 0 10px;
+      border-radius: 40%;
+      // justify-content: center;
+      margin: 0 20px;
+    }
+    .gender {
+      text-transform: capitalize;
     }
     .dept-label {
       background-color: #e9fea5;
@@ -55,7 +59,7 @@
   }
   tr:not(:first-child) {
     background: #ffffff 0% 0% no-repeat padding-box;
-    border: 1px solid #e3e3e3;
-    border-radius: 3px;
+    border: 2px solid #e3e3e3;
+    // border-radius: 1px;
   }
 }

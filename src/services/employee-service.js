@@ -7,18 +7,18 @@ export default class EmployeeService {
   httpOptions = null;
 
   addEmployee(data) {
-    return AxiosService.postService(`${this.baseUrl}employee`, data);
+    return AxiosService.postService(`${this.baseUrl}employees`, data);
   }
   updateEmployee(data) {
-    return AxiosService.putService(`${this.baseUrl}employee/${data.id}`, data);
+    return AxiosService.putService(`${this.baseUrl}update/${data.id}`, data);
   }
   getAllEmployee() {
-    return AxiosService.getService(`${this.baseUrl}employee`);
+    return AxiosService.getService(`${this.baseUrl}employees`);
   }
   getEmployee(id) {
-    return AxiosService.getService(`${this.baseUrl}employee/${id}`);
+    return AxiosService.getService(`${this.baseUrl}employees/${id}`);
   }
   deleteEmployee(id) {
-    return AxiosService.deleteService(`${this.baseUrl}employee/${id}`);
+    return AxiosService.deleteService(`${this.baseUrl}employee/delete/${id}`);
   }
 }
