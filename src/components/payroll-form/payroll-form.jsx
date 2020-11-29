@@ -5,6 +5,7 @@ import profile3 from "../../assets/profile-images/Ellipse-8.png";
 import profile4 from "../../assets/profile-images/Ellipse-7.png";
 import "./payroll-form.scss";
 import logo from "../../assets/images/logo.png";
+import monthNameToNo from "../../utility/utility.js";
 import { useParams, Link, withRouter } from "react-router-dom";
 import EmployeeService from "../../services/employee-service";
 
@@ -73,6 +74,59 @@ const PayrollForm = (props) => {
       year: array[2],
     });
   };
+
+  const onChangeName = (event) => {
+    setForm({ ...formValue, [event.target.name]: event.target.value });
+    if (
+      !RegExp("^[A-Z]{1}[a-z]{2,}\\s?([A-Z]{1}[a-z]{1,}\\s?){0,2}$").test(
+        event.target.value
+      )
+    )
+      formValue.error.name = "Wrong Name format. Eg. John Smith";
+    else formValue.error.name = "";
+  };
+
+  const onChangeYear = (event) => {
+    setForm({ ...formValue, [event.target.name]: event.target.value });
+    let inputDate = new Date(
+      event.target.value,
+      monthNameToNo(formValue.month) - 1,
+      formValue.day
+    );
+    if (inputDate > Date.now())
+      formValue.error.startDate = "Date is a future date";
+    else formValue.error.startDate = "";
+  };
+  const onChangeMonth = (event) => {
+    setForm({ ...formValue, [event.target.name]: event.target.value });
+    let inputDate = new Date(
+      formValue.year,
+      monthNameToNo(event.target.value) - 1,
+      formValue.day
+    );
+    if (inputDate > Date.now())
+      formValue.error.startDate = "Date is a future date";
+    else formValue.error.startDate = "";
+  };
+  const onChangeDay = (event) => {
+    setForm({ ...formValue, [event.target.name]: event.target.value });
+    let inputDate = new Date(
+      formValue.year,
+      monthNameToNo(formValue.month) - 1,
+      event.target.value
+    );
+    if (inputDate > Date.now())
+      formValue.error.startDate = "Date is a future date";
+    else formValue.error.startDate = "";
+  };
+
+  const onChangeSalary = (event) => {
+    setForm({ ...formValue, [event.target.name]: event.target.value });
+    if (event.target.value < 1000)
+      formValue.error.salary = "Salary should be atleast 1000";
+    else formValue.error.salary = "";
+  };
+
   const changeValue = (event) => {
     setForm({ ...formValue, [event.target.name]: event.target.value });
   };
@@ -101,27 +155,40 @@ const PayrollForm = (props) => {
       profileUrl: "",
       startDate: "",
     };
-    if (formValue.name.length < 1) {
-      error.name = "Name is a required field";
+    if (
+      !RegExp("^[A-Z]{1}[a-z]{2,}\\s?([A-Z]{1}[a-z]{1,}\\s?){0,2}$").test(
+        formValue.name
+      )
+    ) {
+      error.name = "Wrong Name format. Eg. John Smith";
       isError = true;
     }
     if (formValue.gender.length < 1) {
       error.gender = "Gender is a required field";
       isError = true;
     }
-    if (formValue.salary.length < 1) {
-      error.salary = "Salary is a required field";
+    if (formValue.salary < 1000) {
+      error.salary = "Salary should be atleast 1000";
       isError = true;
     }
     if (formValue.profileUrl.length < 1) {
       error.profileUrl = "Profile Image is a required field";
       isError = true;
     }
-
     if (formValue.departMentValue.length < 1) {
       error.department = "Department is a required field";
       isError = true;
     }
+    let inputDate = new Date(
+      formValue.year,
+      monthNameToNo(formValue.month) - 1,
+      formValue.day
+    );
+    if (inputDate > Date.now()) {
+      error.startDate = "Date is a future date";
+      isError = true;
+    }
+
     await setForm({ ...formValue, error: error });
     return isError;
   };
@@ -201,7 +268,7 @@ const PayrollForm = (props) => {
               id="name"
               name="name"
               value={formValue.name}
-              onChange={changeValue}
+              onChange={onChangeName}
               placeholder="Enter Your name.."
               required="true"
             />
@@ -340,12 +407,12 @@ const PayrollForm = (props) => {
             <input
               className="input"
               type="number"
-              onChange={changeValue}
               id="salary"
-              value={formValue.salary}
               name="salary"
               placeholder="Salary"
               required="true"
+              value={formValue.salary}
+              onChange={onChangeSalary}
             />
           </div>
           <div className="error"> {formValue.error.salary} </div>
@@ -357,7 +424,7 @@ const PayrollForm = (props) => {
             <div>
               <select
                 value={formValue.day}
-                onChange={changeValue}
+                onChange={onChangeDay}
                 id="day"
                 name="day"
               >
@@ -395,7 +462,7 @@ const PayrollForm = (props) => {
               </select>
               <select
                 value={formValue.month}
-                onChange={changeValue}
+                onChange={onChangeMonth}
                 id="month"
                 name="month"
               >
@@ -414,7 +481,7 @@ const PayrollForm = (props) => {
               </select>
               <select
                 value={formValue.year}
-                onChange={changeValue}
+                onChange={onChangeYear}
                 id="year"
                 name="year"
               >
